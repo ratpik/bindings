@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://asyncapi.com/bindings/sns/channel.json",
+    "title": "Channel Schema",
+    "description": "This object contains configuration for describing an AWS SNS Standard or FIFO topic as an AsyncAPI channel.",
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^x-[\\w\\d\\.\\-\\_]+$": {
+            "$ref": "https://raw.githubusercontent.com/asyncapi/asyncapi-node/v2.7.7/schemas/2.0.0.json#/definitions/specificationExtension"
+        }
+    },
+    "properties": {
+        "name": {
+            "type": "string",
+            "maxLength": 256,
+            "description": "The name of the exchange. Length MUST NOT exceed 256 characters.",
+            "pattern": "[A-Za-z\\-\\_]{0,255}"
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "standard",
+                "fifo"
+            ],
+            "description": "The type of the topic. Can be either 'standard' or 'fifo'."
+        },
+        "bindingVersion": {
+            "type": "string",
+            "enum": [
+                "0.0.1"
+            ],
+            "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+        }
+    },
+    "examples": [
+        {
+            "name": "user-signed-up",
+            "type": "standard",
+            "bindingVersion": "0.0.1"
+        }
+    ]
+}
